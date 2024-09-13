@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarbonChase | Trace</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/style.css">
+ 
+</head>
+
+<body>
+    <div class="container fade-in">
+        <h1>Trace your Carbon</h1>
+        <!-- <h3>Register Now</h3> -->
+        <form action="/">
+            <label for="diet">Diet <span class="required">*</span></label>
+            <select name="diet" id="diet" class="label">
+                <option value="select">--Select--</option>
+                <option value="pescatarian">pescatarian</option>
+                <option value="vegetarian">vegetarian</option>
+                <option value="omnivore">omnivore</option>
+                <option value="vegan">vegan</option>
+            </select>
+
+            <label for="shower">How Often Shower <span class="required">*</span></label>
+            <select name="shower" id="shower" class="label">
+                <option value="select">--Select--</option>
+                <option value="daily">daily</option>
+                <option value="less frequently">less frequently</option>
+                <option value="more frequently">more frequently</option>
+                <option value="twice a day">twice a day</option>
+            </select>
+
+            <label for="heating">Heating Energy Source <span class="required">*</span></label>
+            <select name="heating" id="heating" class="label">
+                <option value="select">--Select--</option>
+                <option value="coal">coal</option>
+                <option value="natural gas">natural gas</option>
+                <option value="wood">wood</option>
+                <option value="electricity">electricity</option>
+            </select>
+
+            <label for="transport">Transport <span class="required">*</span></label>
+            <select name="transport" id="transport" class="label">
+                <option value="select">--Select--</option>
+                <option value="public">public</option>
+                <option value="walk/bicycle">walk/bicycle</option>
+                <option value="private">private</option>
+            </select>
+
+            <label for="vehicleType">Vehicle Type <span class="required">*</span></label>
+            <select name="vehicleType" id="vehicleType" class="label">
+                <option value="select">--Select--</option>
+                <option value="petrol">petrol</option>
+                <option value="diesel">diesel</option>
+                <option value="hybrid">hybrid</option>
+                <option value="lpg">lpg</option>
+                <option value="electric">electric</option>
+            </select>
+
+            <label for="socialActivity">Social Activity <span class="required">*</span></label>
+            <select name="socialActivity" id="socialActivity" class="label">
+                <option value="select">--Select--</option>
+                <option value="often">often</option>
+                <option value="never">never</option>
+                <option value="sometimes">sometimes</option>
+            </select>
+
+            <label for="frequencyOfTravelingByAir">Frequency of Traveling by Air <span class="required">*</span></label>
+            <select name="frequencyOfTravelingByAir" id="frequencyOfTravelingByAir" class="label">
+                <option value="select">--Select--</option>
+                <option value="frequently">frequently</option>
+                <option value="rarely">rarely</option>
+                <option value="never">never</option>
+                <option value="very frequently">very frequently</option>
+            </select>
+
+            <label for="wasteBagSize">Waste Bag Size <span class="required">*</span></label>
+            <select name="wasteBagSize" id="wasteBagSize" class="label">
+                <option value="select">--Select--</option>
+                <option value="large">large</option>
+                <option value="extra large">extra large</option>
+                <option value="small">small</option>
+                <option value="medium">medium</option>
+            </select>
+
+            <label for="wasteBagWeeklyCount">Waste Bag Weekly Count <span class="required">*</span></label>
+            <select name="wasteBagWeeklyCount" id="wasteBagWeeklyCount" class="label">
+                <option value="select">--Select--</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select>
+
+            <label for="energyEfficiency">Energy Efficiency <span class="required">*</span></label>
+            <select name="energyEfficiency" id="energyEfficiency" class="label">
+                <option value="select">--Select--</option>
+                <option value="No">No</option>
+                <option value="Sometimes">Sometimes</option>
+                <option value="Yes">Yes</option>
+            </select>
+
+            <!-- Numeric Inputs -->
+            <label for="monthlyGroceryBill">Monthly Grocery Bill ($) <span class="required">*</span></label>
+            <input type="number" name="monthlyGroceryBill" id="monthlyGroceryBill" min="50" max="299" class="label">
+
+            <label for="vehicleMonthlyDistanceKm">Vehicle Monthly Distance (Km) <span class="required">*</span></label>
+            <input type="number" name="vehicleMonthlyDistanceKm" id="vehicleMonthlyDistanceKm" min="0" max="9999" class="label">
+
+            <label for="howLongTVPCDailyHour">How Long TV/PC Daily (Hours) <span class="required">*</span></label>
+            <input type="number" name="howLongTVPCDailyHour" id="howLongTVPCDailyHour" min="0" max="24" class="label">
+
+            <label for="howManyNewClothesMonthly">How Many New Clothes Monthly <span class="required">*</span></label>
+            <input type="number" name="howManyNewClothesMonthly" id="howManyNewClothesMonthly" min="0" max="50" class="label">
+
+            <label for="howLongInternetDailyHour">How Long Internet Daily (Hours) <span class="required">*</span></label>
+            <input type="number" name="howLongInternetDailyHour" id="howLongInternetDailyHour" min="0" max="24" class="label">
+
+            <!-- <input type="submit" value="Submit & Trace"> -->
+            <div class="btn">
+                <button class="button">
+                    <span class="button-content">Submit & Trace</span>
+                </button>
+                <!-- <button type="submit" class="btn btn-primary"></button> -->
+            </div>
+        </form>
+    </div>
+    <script src="country.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

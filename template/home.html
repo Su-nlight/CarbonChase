@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Layout</title>
+    <!-- <link rel="stylesheet" href="./css/styles.css"> -->
+    <link rel="stylesheet" href="./css/dashboard.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Dashboard</h2>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="http://127.0.0.1:5500/dashboard.html">Dashboard</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><button id="removeTokenBtn">Remove Access Token</button></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>Welcome to the Dashboard</h1>
+            </div>
+
+            <!-- Profile Card -->
+            <div class="profile-card">
+                <h2 class="username">John Doe</h2>
+                <h4 class="name"><span class="firstName"></span>Jhon <span class="lastName">Doe</span> </h4>
+                <h5 class="email">joh@doe.com</h5>
+                <h6 class="place"><span class="location">Delhi</span> <span class="country_code">IN</span></h6>
+
+            </div>
+        </div>
+    </div>
+    <!-- <iframe
+    src="https://www.chatbase.co/chatbot-iframe/d1Pw9A42RxeNMGXHEmskP"
+    width="100%"
+    style="height: 100%; min-height: 700px"
+    frameborder="0"
+    ></iframe> -->
+    <!-- <script src="script.js"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        window.onload = function () {
+            const existingToken = localStorage.getItem("accessToken");
+            if (existingToken && !isTokenExpired()) {
+                console.log("User is already logged in.");
+            }
+            if (existingToken && !isTokenExpired()) {
+                console.log("User is already logged in.");
+            }
+        };
+
+
+        window.embeddedChatbotConfig = {
+            chatbotId: "d1Pw9A42RxeNMGXHEmskP",
+            domain: "www.chatbase.co"
+        }
+
+
+        document.getElementById("removeTokenBtn").addEventListener("click", function () {
+            // Remove the access token from localStorage
+            localStorage.removeItem("accessToken");
+
+            // Provide feedback to the user
+            window.location.replace("http://127.0.0.1:5500/auth.html");
+        });
+
+
+
+        function isTokenExpired() {
+            const expirationTime = localStorage.getItem("tokenExpiration");
+            return new Date().getTime() > expirationTime;
+        }
+
+
+        // Get access token from localStorage
+        const accessToken = localStorage.getItem("accessToken");
+        console.log(accessToken)
+
+        // Check if the access token exists
+        // if (!accessToken) {
+        //     document.getElementById("response").textContent = "Access token not found!";
+        //     return true;
+
+
+        // Make Axios GET request with Authorization header
+        axios.get('https://d6a1-152-58-93-73.ngrok-free.app/me',{
+            'access_token':accessToken,
+            'token_type':'Bearer'
+        },{
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    }
+                })
+            .then(function (response) {
+                // Handle success
+                console.log(response.data.location);
+                // document.getElementById("response").textContent = JSON.stringify(response.data, null, 2);
+            })
+            .catch(function (error) {
+                // Handle error
+                console.error(error);
+                // document.getElementById("response").textContent = "Error fetching data!";
+            });
+
+    </script>
+    <script src="https://www.chatbase.co/embed.min.js" chatbotId="d1Pw9A42RxeNMGXHEmskP" domain="www.chatbase.co"
+        defer></script>
+</body>
+
+</html>

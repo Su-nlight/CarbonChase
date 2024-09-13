@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarbonChase | Authenticate</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/style.css">
+ 
+</head>
+
+<body>
+    <div class="container">
+        <div class="tab">
+            <div id="login-tab" class="active">Login</div>
+            <div id="signup-tab">Sign Up</div>
+        </div>
+
+        <!-- Login Form -->
+        <div id="login-form" class="form-container fade-in">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="login-username">User name</label>
+                    <input type="text" id="login-username" name="login-username" required>
+                    <div class="error-message" id="login-username-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="login-password" required>
+                    <div class="error-message" id="login-password-error"></div>
+                </div>
+                <button class="button share" type="submit">
+                    <span class="button-content">Login</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Signup Form -->
+        <div id="signup-form" class="form-container fade-in" style="display: none;">
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signup-username">User Name</label>
+                    <input type="text" id="signup-username" name="signup-username" required>
+                    <div class="error-message" id="signup-username-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signup-firstname">First Name</label>
+                    <input type="text" id="signup-firstname" name="signup-firstname" required>
+                    <div class="error-message" id="signup-firstname-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signup-lastname">Last Name</label>
+                    <input type="text" id="signup-lastname" name="signup-lastname" required>
+                    <div class="error-message" id="signup-lastname-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" name="signup-email" required>
+                    <div class="error-message" id="signup-email-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" name="signup-password" required>
+                    <div class="error-message" id="signup-password-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirm Password</label>
+                    <input type="password" id="signup-confirm-password" name="signup-confirm-password" required>
+                    <div class="error-message" id="signup-confirm-password-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" required>
+                    <div class="error-message" id="location-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select id="country" name="country" required class="label">
+                        <!-- Country options will be populated by country.js -->
+                    </select>
+                    <div class="error-message" id="country-error"></div>
+                </div>
+                <div class="form-group">
+                    <label>Gender</label>
+                    <select id="gender" name="gender" required class="label">
+                        <option value="">Select your gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="others">Others</option>
+                    </select>
+                    <div class="error-message" id="gender-error"></div>
+                </div>
+                <div class="form-group">
+                    <label>Body Type</label>
+                    <select id="body-type" name="body-type" required class="label">
+                        <option value="">Select your body type</option>
+                        <option value="underweight">Underweight</option>
+                        <option value="normal">Normal</option>
+                        <option value="overweight">Overweight</option>
+                        <option value="obese">Obese</option>
+                    </select>
+                    <div class="error-message" id="body-type-error"></div>
+                </div>
+
+                <button class="button share" type="submit">
+                    <span class="button-content">Sign Up</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Profile Creation -->
+        <div id="profile-creation" class="form-container fade-out" style="display: none;">
+            <div id="message"></div>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById('login-tab').addEventListener('click', function () {
+            document.getElementById('signup-form').classList.add('fade-out');
+            document.getElementById('profile-creation').classList.add('fade-out');
+            document.getElementById('login-form').classList.remove('fade-out');
+            document.getElementById('login-form').classList.add('fade-in');
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('profile-creation').style.display = 'none';
+            document.getElementById('login-form').style.display = 'block';
+            this.classList.add('active');
+            document.getElementById('signup-tab').classList.remove('active');
+        });
+
+        document.getElementById('signup-tab').addEventListener('click', function () {
+            document.getElementById('login-form').classList.add('fade-out');
+            document.getElementById('profile-creation').classList.add('fade-out');
+            document.getElementById('signup-form').classList.remove('fade-out');
+            document.getElementById('signup-form').classList.add('fade-in');
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('profile-creation').style.display = 'none';
+            document.getElementById('signup-form').style.display = 'block';
+            this.classList.add('active');
+            document.getElementById('login-tab').classList.remove('active');
+        });
+
+        document.getElementById('signupForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Check if signup form is valid
+            if (validateForm('signupForm')) {
+                document.getElementById('signup-form').classList.add('fade-out');
+                setTimeout(function () {
+                    document.getElementById('signup-form').style.display = 'none';
+                    document.getElementById('profile-creation').style.display = 'block';
+                    document.getElementById('profile-creation').classList.remove('fade-out');
+                    document.getElementById('profile-creation').classList.add('fade-in');
+                }, 500); // Match the duration of the fade-out animation
+            }
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            if (!validateForm('loginForm')) {
+                event.preventDefault();
+            }
+        });
+
+        // document.getElementById('profileCreationForm').addEventListener('submit', function (event) {
+        //     // Add validation or processing for profile creation form if needed
+        // });
+
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function validatePassword(password) {
+            return password.length >= 6; // Minimum length for password
+        }
+
+        function validateForm(formId) {
+            const form = document.getElementById(formId);
+            const email = form.querySelector('[name="login-email"]') || form.querySelector('[name="signup-email"]');
+            const password = form.querySelector('[name="login-password"]') || form.querySelector('[name="signup-password"]');
+            const confirmPassword = form.querySelector('[name="signup-confirm-password"]');
+            const firstName = form.querySelector('[name="signup-firstname"]');
+            const lastName = form.querySelector('[name="signup-lastname"]');
+
+            let isValid = true;
+
+            // Clear previous errors
+            form.querySelectorAll('.error-message').forEach(msg => msg.textContent = '');
+            form.querySelectorAll('input').forEach(input => input.classList.remove('error'));
+
+            // Validate email
+            if (email && !validateEmail(email.value)) {
+                isValid = false;
+                email.classList.add('error');
+                document.getElementById(email.id + '-error').textContent = 'Invalid email address';
+            }
+
+            // Validate password
+            if (password && !validatePassword(password.value)) {
+                isValid = false;
+                password.classList.add('error');
+                document.getElementById(password.id + '-error').textContent = 'Password must be at least 6 characters long';
+            }
+
+            // Confirm password
+            if (confirmPassword && confirmPassword.value !== password.value) {
+                isValid = false;
+                confirmPassword.classList.add('error');
+                document.getElementById(confirmPassword.id + '-error').textContent = 'Passwords do not match';
+            }
+
+            // Validate required fields
+            [firstName, lastName].forEach(field => {
+                if (field && field.value.trim() === '') {
+                    isValid = false;
+                    field.classList.add('error');
+                    document.getElementById(field.id + '-error').textContent = 'This field is required';
+                }
+            });
+
+            return isValid;
+        }
+    </script>
+    <script src="country.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+    <script>
+        // import axios from 'axios';
+
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+    // Prevent the default form submission
+    event.preventDefault();
+    
+    // Retrieve values from the form inputs
+    const userName = document.getElementById('signup-username').value;
+    const firstName = document.getElementById('signup-firstname').value;
+    const lastName = document.getElementById('signup-lastname').value;
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+    const confirmPassword = document.getElementById('signup-confirm-password').value;
+    const location = document.getElementById('location').value;
+    const country = document.getElementById('country').value;
+    const gender = document.getElementById('gender').value;
+    const bodyType = document.getElementById('body-type').value;
+    
+    // Make the POST request with corrected payload
+    axios.post("https://d6a1-152-58-93-73.ngrok-free.app/authenticate/register", {
+        username: userName,  // Assuming 'username' is expected by the server
+        password: password,
+        email: email,
+        first_name: firstName,  // Corrected from 'irst_name'
+        last_name: lastName,    // Corrected from 'ast_name'
+        location: location,
+        country_code: country,
+        body_type: bodyType,
+        gender: gender
+    }, {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(response => {
+            console.log("Response:", response.data);
+            
+            // Injecting the response data into the message div
+            document.getElementById('message').innerHTML = '<strong>' + response.data.message + '</strong>';
+        })
+    .catch(error => {
+        console.error("Error:", error.response ? error.response.data : error.message);
+    });
+});
+
+
+        
+            
+        
+
+// Function to handle login
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();  // Prevent the default form submission behavior
+
+    // Get the values from the form
+    const username = document.getElementById("login-username").value;
+    const password = document.getElementById("login-password").value;
+
+    // Prepare the data for the request
+    const params = new URLSearchParams();
+    params.append("grant_type", "password");
+    params.append("username", username);  // Use email as username
+    params.append("password", password);
+
+    // Make the Axios request
+    axios.post("https://d6a1-152-58-93-73.ngrok-free.app/authenticate/token", params, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        }
+    })
+    .then(response => {
+        console.log("Response:", response.data);
+        // Assuming response.data.token contains the access token
+        const token = response.data.access_token;
+        console.log(response.data.access_token);
+
+        // Store the token in local storage
+        localStorage.setItem("accessToken", token);
+
+        // Set an expiration time for the token (if provided)
+        const expiresIn = response.data.expires_in; // You may need to adjust this based on your response
+        const expirationTime = new Date().getTime() + expiresIn * 1000;
+        localStorage.setItem("tokenExpiration", expirationTime);
+        window.location.replace("http://127.0.0.1:5500/home.html");
+
+        // Handle success (e.g., redirect, show success message)
+    })
+
+    .catch(error => {
+        console.error("Error:", error);
+        // Handle error (e.g., show error messages)
+    });
+});
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            try {
+                const response = await axios.post("https://d6a1-152-58-93-73.ngrok-free.app/authenticate/token", {
+                    grant_type: "password",
+                    username: username,
+                    password: password,
+                }, {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    }
+                });
+
+                const token = response.data.token;
+                localStorage.setItem("accessToken", token);
+                const expirationTime = new Date().getTime() + (90 * 60 * 1000); // 90 minutes
+                localStorage.setItem("tokenExpiration", expirationTime);
+                document.getElementById('login-error-message').innerHTML = " "; // Clear previous error messages
+
+                // Set up the refresh token interval
+                setTokenRefreshInterval();
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById('login-error-message').innerHTML = "Login failed. Please check your credentials.";
+            }
+        });
+
+        function isTokenExpired() {
+            const expirationTime = localStorage.getItem("tokenExpiration");
+            return new Date().getTime() > expirationTime;
+        }
+
+        function setTokenRefreshInterval() {
+            const refreshInterval = 15 * 60 * 1000; // Check every 15 minutes
+            setInterval(async () => {
+                if (isTokenExpired()) {
+                    try {
+                        await refreshToken();
+                    } catch (error) {
+                        console.error("Error refreshing token:", error);
+                        document.getElementById('login-error-message').textContent = "Session expired. Please log in again.";
+                    }
+                }
+            }, refreshInterval);
+        }
+
+        async function refreshToken() {
+            try {
+                const refreshToken = localStorage.getItem("refreshToken"); // Adjust as needed
+                const params = new URLSearchParams();
+                params.append("grant_type", "refresh_token");
+                params.append("refresh_token", refreshToken);
+
+                const response = await axios.post("https://d6a1-152-58-93-73.ngrok-free.app/authenticate/token", params, {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    }
+                });
+
+                const newToken = response.data.token;
+                localStorage.setItem("accessToken", newToken);
+                const newExpirationTime = new Date().getTime() + (90 * 60 * 1000); // 90 minutes
+                localStorage.setItem("tokenExpiration", newExpirationTime);
+            } catch (error) {
+                console.error("Error refreshing token:", error);
+                throw error;
+            }
+        }
+
+        // Optional: Check for an existing token on page load
+        window.onload = function () {
+            const existingToken = localStorage.getItem("accessToken");
+            if (existingToken && !isTokenExpired()) {
+                console.log("User is already logged in.");
+            }
+        };
+    });
+
+    </script>
+</body>
+
+</html>
