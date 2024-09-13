@@ -1,0 +1,325 @@
+@import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'SUSE', sans-serif;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background: #212121;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .container {
+    width: 600px; */
+    /* Kept as-is */
+    /* background: rgba(212, 212, 212, 0.17);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.7px);
+    -webkit-backdrop-filter: blur(6.7px);
+    border: 1px solid rgba(212, 212, 212, 0.72);
+    overflow: hidden;
+} */
+
+/* Existing styles... */
+
+/* Button positioning */
+#openModalBtn {
+    position: fixed;
+    top: 20px;
+    left: 20px; /* Changed from right to left */
+    z-index: 1000; /* Ensure it is above other content */
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    color: rgb(224 222 222);
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /*Enable scroll if needed*/
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal.show {
+    display: block;
+    opacity: 1;
+}
+
+/* Modal Content */
+.modal-content {
+    background: #212121;
+    margin: 15% auto; /* Centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Adjust as needed */
+    transition: transform 0.3s ease-in-out;
+    transform: scale(0.9);
+}
+
+.modal.show .modal-content {
+    transform: scale(1);
+}
+
+/* Close button */
+.close {
+    color: rgb(224, 222, 222);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: rgb(200, 181, 181);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Button styling */
+.button {
+    background: #5316b4;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: background 0.3s ease;
+}
+
+.button:hover {
+    background: #3e0095;
+}
+
+/* TinyMCE specific */
+.mytextarea {
+    width: 100%;
+    height: 400px;
+    border-radius: 10px;
+    border: 1px solid rgba(212, 212, 212, 0.72);
+    background: rgba(212, 212, 212, 0.6);
+}
+
+/* Other existing styles... */
+
+
+.tab {
+    display: flex;
+    cursor: pointer;
+    background: #686161;
+    padding: 10px;
+    justify-content: space-around;
+    transition: background 0.3s ease;
+}
+
+.tab div {
+    padding: 10px;
+    text-align: center;
+    flex: 1;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.tab div.active {
+    background: #928383;
+    border-bottom: 2px solid #007bff;
+    font-weight: bold;
+    animation: tabActive 0.3s ease;
+}
+
+@keyframes tabActive {
+    from {
+        background-color: #686161;
+        transform: translateY(-5px);
+    }
+
+    to {
+        background-color: #928383;
+        transform: translateY(0);
+    }
+}
+
+.form-container {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: rgb(224, 222, 222);
+}
+
+.form-group input {
+    /* width: 350px; */
+    width: 100%;
+    /* Kept as-is */
+    height: 40px;
+    /* Kept as-is */
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 10px;
+    font-size: 15px;
+    background: rgba(212, 212, 212, 0.6);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8.7px);
+    -webkit-backdrop-filter: blur(8.7px);
+    border: 1px solid rgba(212, 212, 212, 0.72);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.form-group input.error {
+    border-color: #dc3545;
+}
+
+.form-group input:focus {
+    outline: none;
+    transform: scale(1.02);
+}
+
+.form-group .error-message {
+    color: #dc3545;
+    font-size: 0.875em;
+    margin-top: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.form-group input.error+.error-message {
+    opacity: 1;
+}
+
+.button {
+    width: 250px;
+    /* Kept as-is */
+    position: relative;
+    overflow: hidden;
+    height: 3rem;
+    /* Kept as-is */
+    padding: 0 2rem;
+    border-radius: 10px;
+    background: #5316b4;
+    background-size: 400%;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button:hover {
+    transform: scale(1.05);
+}
+
+.button:hover::before {
+    transform: scaleX(1);
+}
+
+.button-content {
+    position: relative;
+    z-index: 1;
+}
+
+.button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    width: 100%;
+    height: inherit;
+    border-radius: inherit;
+    background: linear-gradient(82.3deg,
+            rgba(150, 93, 233, 1) 10.8%,
+            rgba(99, 88, 238, 1) 94.3%);
+    transition: all 0.475s;
+}
+
+.required {
+    font-size: 15px;
+    color: rgb(255, 0, 0);
+}
+
+
+/* Animation classes for form transition */
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.fade-out {
+    animation: fadeOut 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+
+/* Add or adjust existing styles in styles.css or style.css */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.fade-out {
+    animation: fadeOut 0.5s ease-in;
+}
